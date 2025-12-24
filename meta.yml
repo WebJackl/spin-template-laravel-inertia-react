@@ -1,0 +1,7 @@
+---
+title: Laravel Lite Template
+authors:
+  - Jigar Dhulla
+description: Laravel template with MySQL database and Queue support. A middle-ground between basic and pro.
+repository: https://github.com/jigar-dhulla/spin-laravel-lite-template
+issues: https://github.com/jigar-dhulla/spin-laravel-lite-template/issues
