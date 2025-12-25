@@ -59,6 +59,8 @@ services:
       mysql:
         condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      disable: true
 
   scheduler:
     build:
@@ -74,6 +76,8 @@ services:
       mysql:
         condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      disable: true
 
   node:
     image: node:22

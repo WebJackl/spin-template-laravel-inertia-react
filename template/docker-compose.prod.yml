@@ -72,7 +72,7 @@ services:
         - "traefik.http.services.my-php-app.loadbalancer.healthcheck.path=/up"
         - "traefik.http.services.my-php-app.loadbalancer.healthcheck.interval=30s"
         - "traefik.http.services.my-php-app.loadbalancer.healthcheck.timeout=5s"
-        - "traefik.http.services.my-php-app.loadbalancer.healthcheck.scheme=http"
+        - "traefik.http.services.my-php-app.loadbalancer.healthcheck.scheme=https"
 
   mysql:
     environment:
@@ -105,6 +105,8 @@ services:
       DB_CONNECTION: mysql
     networks:
       - web-public
+    healthcheck:
+      disable: true
     volumes:
       - "storage_private:/var/www/html/storage/app/private/"
       - "storage_public:/var/www/html/storage/app/public/"
@@ -135,6 +137,8 @@ services:
       DB_CONNECTION: mysql
     networks:
       - web-public
+    healthcheck:
+      disable: true
     volumes:
       - "storage_private:/var/www/html/storage/app/private/"
       - "storage_public:/var/www/html/storage/app/public/"
