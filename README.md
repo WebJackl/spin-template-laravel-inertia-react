@@ -1,4 +1,4 @@
-# Spin Template - Laravel Lite 🚀
+# Spin Template - Laravel 🚀
 
 A Laravel template with **MySQL database**, **Laravel Queues** and **Scheduler** support. This template sits between the basic free template and the Pro template, offering essential production features without the full Pro feature set.
 
