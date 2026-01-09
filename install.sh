@@ -99,17 +99,17 @@ project_files_exist() {
 }
 
 prompt_php_version() {
-    local php_versions=("8.5" "8.4" "8.3" "8.2" "8.1" "8.0" "7.4")
+    local php_versions=("8.5" "8.4")
     local php_choice
 
     # If SPIN_ACTION is "new", filter out versions below 8.2
     if [ "$SPIN_ACTION" == "new" ]; then
-        php_versions=("8.5" "8.4" "8.3" "8.2")
+        php_versions=("8.5" "8.4")
     fi
     
     # Filter PHP versions based on variation requirements
     if [[ "$SPIN_PHP_VARIATION" == "frankenphp" ]]; then
-        php_versions=("8.5" "8.4" "8.3")
+        php_versions=("8.5" "8.4")
     fi
 
     while true; do
@@ -317,7 +317,7 @@ new(){
     -e COMPOSER_CACHE_DIR=/dev/null \
     -e "SHOW_WELCOME_MESSAGE=false" \
     "$SPIN_PHP_DOCKER_INSTALLER_IMAGE" \
-    composer --no-cache create-project laravel/laravel "${laravel_framework_args[@]}"
+    composer --no-cache --prefer-dist create-project nunomaduro/laravel-starter-kit-inertia-react "${laravel_framework_args[@]}"
 
   init --force
 }

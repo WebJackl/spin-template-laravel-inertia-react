@@ -102,6 +102,30 @@ install_node_dependencies() {
     fi
 }
 
+configure_vite() {
+    # Check if vite.config.js or vite.config.ts exists
+    if [ -f "$project_dir/vite.config.js" ]; then
+        vite_config="$project_dir/vite.config.js"
+    elif [ -f "$project_dir/vite.config.ts" ]; then
+        vite_config="$project_dir/vite.config.ts"
+    else
+        echo "Warning: vite.config.js or vite.config.ts not found. Skipping Vite configuration."
+        return
+    fi
+
+    echo "Configuring Vite for Docker..."
+    
+    if ! grep -q "server:" "$vite_config"; then
+        if grep -q "plugins: \[" "$vite_config"; then
+             line_in_file --action replace --file "$vite_config" "plugins: \[" "server: { host: '0.0.0.0', hmr: { host: 'localhost' } }, plugins: ["
+        else
+            echo "Could not find 'plugins: [' in $vite_config. Manual Vite configuration may be required."
+        fi
+    else
+        echo "Vite server configuration already detected (or 'server:' keyword found). Skipping auto-injection to avoid conflicts."
+    fi
+}
+
 process_selections() { 
     [[ $mysql ]] && configure_mysql
     [[ $queue ]] && configure_queue
@@ -272,7 +296,7 @@ line_in_file --action exact --ignore-missing --file "$project_dir/.spin.yml" "ch
 
 if [[ "$SPIN_INSTALL_DEPENDENCIES" == "true" ]]; then
     install_node_dependencies
-
+    configure_vite
 fi
 
 if [[ ! -d "$project_dir/.git" ]]; then

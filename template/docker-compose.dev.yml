@@ -84,7 +84,10 @@ services:
     volumes:
       - .:/usr/src/app/
     working_dir: /usr/src/app/
-    networks: 
+    command: npm run dev -- --host
+    ports:
+      - "5173:5173"
+    networks:
       - development
 
   mailpit:
