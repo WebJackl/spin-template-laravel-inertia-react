@@ -317,7 +317,7 @@ new(){
     -e COMPOSER_CACHE_DIR=/dev/null \
     -e "SHOW_WELCOME_MESSAGE=false" \
     "$SPIN_PHP_DOCKER_INSTALLER_IMAGE" \
-    composer --no-cache --prefer-dist --ignore-platform-reqs create-project nunomaduro/laravel-starter-kit-inertia-react "${laravel_framework_args[@]}"
+    composer --no-cache --prefer-dist --ignore-platform-reqs --no-scripts create-project nunomaduro/laravel-starter-kit-inertia-react "${laravel_framework_args[@]}"
 
   init --force
 }
