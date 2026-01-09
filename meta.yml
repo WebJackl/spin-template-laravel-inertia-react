@@ -1,7 +1,6 @@
----
-title: Laravel Spin Template from WebJackl
+title: Laravel Starter Kit (Inertia & React) Template
 authors:
   - Jigar Dhulla
-description: Laravel template with MySQL database, Queue and Scheduler support. A middle-ground between basic and pro.
-repository: https://github.com/webjackl/spin-template-laravel
-issues: https://github.com/webjackl/spin-template-laravel/issues
+description: Ultra-strict, type-safe Laravel skeleton with Inertia & React, adapted for Spin. Includes MySQL, Queue, and Scheduler support.
+repository: https://github.com/webjackl/spin-template-laravel-inertia-react
+issues: https://github.com/webjackl/spin-template-laravel-inertia-react/issues

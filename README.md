@@ -1,15 +1,16 @@
-> [!CAUTION]
-> This template is in very early stage and not recommended to use in production.
+# Spin Template - Laravel Starter Kit (Inertia & React) 🚀
 
+A highly opinionated Spin template for the [Laravel Starter Kit (Inertia & React)](https://github.com/nunomaduro/laravel-starter-kit-inertia-react). This template combines the strict, type-safe architecture of the starter kit with the Docker-powered ease of use from [Spin](https://serversideup.net/open-source/spin).
 
-# Spin Template - Laravel 🚀
-
-A Laravel template with **MySQL database**, **Laravel Queues** and **Scheduler** support. This template sits between the basic free template and the Pro template, offering essential production features without the full Pro feature set.
+> [!NOTE]
+> This template installs the `nunomaduro/laravel-starter-kit-inertia-react` project, which mandates PHP 8.4+.
 
 ## Features
 
 | Feature | Included |
 |---------|----------|
+| **Laravel Starter Kit (Inertia & React)** | ✅ |
+| **Vite HMR (Hot Module Replacement)** | ✅ |
 | MySQL 8.0 Database | ✅ |
 | Laravel Queues (database driver) | ✅ |
 | Queue Worker Container | ✅ |
@@ -18,16 +19,10 @@ A Laravel template with **MySQL database**, **Laravel Queues** and **Scheduler**
 | Zero-Downtime Deployments | ✅ |
 | Automated SSL (Let's Encrypt) | ✅ |
 | Mailpit (SMTP Trapping) | ✅ |
-| Local Development with Hot Reload | ✅ |
 
-## What's Not Included (Pro Features)
-
-- Redis
-- Laravel Horizon
-- Laravel Reverb
-- GitHub Actions CI/CD (pre-configured)
-- Local HTTPS/SSL (trusted certs)
-- PostgreSQL/MariaDB options
+### What's Special About This Template?
+- **Automated Vite Config**: We automatically inject Docker-compatible settings into `vite.config.js` / `vite.config.ts`, ensuring the dev server binds correctly (`0.0.0.0`) and HMR works out of the box.
+- **Strict Typing**: Inherits the starter kit's strict PHPStan and TypeScript configuration.
 
 ## Quick Start
 
@@ -36,7 +31,7 @@ Make sure you have Spin installed: https://serversideup.net/open-source/spin/doc
 
 ### Create a new project
 ```bash
-spin new webjackl/spin-template-laravel my-project
+spin new webjackl/spin-template-laravel-inertia-react my-project
 ```
 
 ### Run the project
@@ -44,6 +39,7 @@ spin new webjackl/spin-template-laravel my-project
 cd my-project
 spin up
 ```
+Once started, your application will be available at `https://laravel.test` (or the domain you configured).
 
 ### Run migrations
 ```bash
@@ -54,15 +50,15 @@ spin exec php artisan migrate
 
 When you run `spin up`, the following containers will start:
 
-| Service | Port | Description |
-|---------|------|-------------|
-| php | - | Laravel application (via Traefik) |
-| mysql | 3306 | MySQL 8.0 database |
-| queue | - | Queue worker (php artisan queue:work) |
-| scheduler | - | Task scheduler (php artisan schedule:work) |
-| traefik | 80, 443 | Reverse proxy |
-| node | - | Node.js for asset compilation |
-| mailpit | 8025 | Email testing UI |
+| Service | Host Port | Internal Port | Description |
+|---------|-----------|---------------|-------------|
+| php | - | 9000 | Laravel application (via Traefik) |
+| mysql | 3306 | 3306 | MySQL 8.0 database |
+| queue | - | - | Queue worker (`php artisan queue:work`) |
+| scheduler | - | - | Task scheduler (`php artisan schedule:work`) |
+| traefik | 80, 443 | 80, 443 | Reverse proxy |
+| node | 5173 | 5173 | Node.js for Vite dev server |
+| mailpit | 8025 | 8025 | Email testing UI |
 
 ## Database Configuration
 
@@ -79,13 +75,15 @@ DB_PASSWORD=secret
 
 ## Queue Configuration
 
-Queues use the database driver by default:
+Queues use the `database` driver by default.
 
 ```env
 QUEUE_CONNECTION=database
 ```
 
 ## Production Deployment
+
+This template supports Spin's standard deployment workflow.
 
 ```bash
 # Provision your server (first time)
@@ -94,6 +92,10 @@ spin provision production
 # Deploy your application
 spin deploy production
 ```
+
+## Credits
+- [Laravel Starter Kit (Inertia & React)](https://github.com/nunomaduro/laravel-starter-kit-inertia-react) by Nuno Maduro
+- [Spin](https://serversideup.net/open-source/spin) by Server Side Up
 
 ## License
 
