@@ -265,7 +265,7 @@ if [[ "$SPIN_INSTALL_DEPENDENCIES" == "true" ]]; then
             -e COMPOSER_CACHE_DIR=/dev/null \
             -e "SHOW_WELCOME_MESSAGE=false" \
             php \
-            composer install
+            composer install --ignore-platform-reqs --no-scripts
 
         echo "Installing Spin..."
         docker compose run --rm --build --no-deps --remove-orphans \
