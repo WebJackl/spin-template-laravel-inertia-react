@@ -272,7 +272,7 @@ if [[ "$SPIN_INSTALL_DEPENDENCIES" == "true" ]]; then
             -e COMPOSER_CACHE_DIR=/dev/null \
             -e "SHOW_WELCOME_MESSAGE=false" \
                 php \
-                composer require serversideup/spin --dev
+                composer require serversideup/spin --dev --ignore-platform-reqs --no-scripts
     else
         echo "Installing Spin..."
         docker run --rm \
@@ -281,7 +281,7 @@ if [[ "$SPIN_INSTALL_DEPENDENCIES" == "true" ]]; then
             -e COMPOSER_CACHE_DIR=/dev/null \
             -e "SHOW_WELCOME_MESSAGE=false" \
             "$SPIN_PHP_DOCKER_INSTALLER_IMAGE" \
-            composer require serversideup/spin --dev
+            composer require serversideup/spin --dev --ignore-platform-reqs --no-scripts
     fi
 fi
 
