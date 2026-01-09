@@ -116,8 +116,8 @@ configure_vite() {
     echo "Configuring Vite for Docker..."
     
     if ! grep -q "server:" "$vite_config"; then
-        if grep -q "plugins: \[" "$vite_config"; then
-             line_in_file --action replace --file "$vite_config" "plugins: \[" "server: { host: '0.0.0.0', hmr: { host: 'localhost' } }, plugins: ["
+        if grep -q "plugins:.*\[" "$vite_config"; then
+             line_in_file --action replace --file "$vite_config" "plugins:.*\[" "server: { host: '0.0.0.0', hmr: { host: 'localhost' } }, plugins: ["
         else
             echo "Could not find 'plugins: [' in $vite_config. Manual Vite configuration may be required."
         fi
